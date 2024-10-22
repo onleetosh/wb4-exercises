@@ -18,14 +18,13 @@ public class Room {
         this.price = price;
         this.occupied = occupied;
         this.dirty = dirty;
-
     }
 
     public int getBeds(){
-        return  this.beds;
+        return  beds;
     }
     public double getPrice(){
-        return this.price;
+        return price;
     }
     public boolean isOccupied(){
         return occupied;
@@ -33,7 +32,7 @@ public class Room {
     public boolean isDirty(){
         return dirty;
     }
-    public boolean getAvaliable(){
+    public boolean getAvailable(){
         return ( !this.isDirty() && !this.isOccupied());
     }
 }
