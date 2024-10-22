@@ -7,6 +7,9 @@ public class Employee {
     private String department;
     private double payRate;
     private double hoursWorked;
+    private Double punchInTime; // Store punch-in time
+
+
 
     private final double overtimeBonus = 1.5;
     private final double maxWorkHour = 40;
@@ -62,12 +65,25 @@ public class Employee {
 
     }
 
-    public double punchIn(double time) {
-
+    // work has punched in
+    public void punchIn(double time) {
+        this.punchInTime = time; // Store punch-in time
     }
 
-    public double punchOut(double time) {
-
+    // worker has punch out
+    public void punchOut(double time) {
+        if (punchInTime == null) { // Check if punch-in has been recorded
+            System.out.println("Error: Punch in first.");
+            return;
+        }
+        // find total hours worked
+        double workedHours = time - punchInTime;
+        // Add hours to the total hours worked
+        this.hoursWorked += workedHours;
+        // reset punch-in
+        this.punchInTime = null;
     }
+
+
 
 }
