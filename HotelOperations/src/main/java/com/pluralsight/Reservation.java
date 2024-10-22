@@ -14,7 +14,7 @@ public class Reservation {
     }
 
     //method designed return price
-    public double getPrice() {
+    public double getPrice() throws Exception{
 
         double price = 0;
         //if room size is king price is set to $139.00
@@ -26,7 +26,7 @@ public class Reservation {
             price = 124.0;
         }
         else {
-            System.out.println("Invalid room type.");
+            throw new Exception("Invalid selection. Choose room type (king or double)");
         }
         //if stay is on the weekend increase price by 10%
         if(this.isWeekend) {

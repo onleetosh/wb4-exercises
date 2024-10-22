@@ -8,8 +8,8 @@ public class Employee {
     private double payRate;
     private double hoursWorked;
 
-    private final double overtimeAmount = 1.5;
-    private final double workingAfterHours = 40;
+    private final double overtimeBonus = 1.5;
+    private final double maxWorkHour = 40;
 
     public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
         this.employeeId = employeeId;
@@ -27,26 +27,39 @@ public class Employee {
     public double getHoursWorked() { return hoursWorked; }
 
     public double getRegularHours() {
-        if (hoursWorked <= workingAfterHours) {
+        if (hoursWorked <= maxWorkHour) {
             return  hoursWorked;
         } else {
-            return workingAfterHours;
+            return maxWorkHour;
         }
+       // return (hoursWorked > maxWorkHour) ? maxWorkHour : hoursWorked;
+
     }
     public double getOvertimeHours() {
-        if(hoursWorked > workingAfterHours) {
-            return  hoursWorked - workingAfterHours;
+        if(hoursWorked > maxWorkHour) {
+            return  hoursWorked - maxWorkHour;
         }
         else {
             return 0;
         }
+
+        // return (hoursWorked > maxWorkHour) ? hoursWorked - maxWorkHour : 0 ;
     }
 
     public double getTotalPay() {
-        double regularPay = getRegularHours() * payRate;
-        double overtimePay = getOvertimeHours() * payRate * overtimeAmount;
-        return regularPay + overtimePay;
+            //double regularPay = getRegularHours() * payRate;
+            //double overtimePay = getOvertimeHours() * payRate * overtimeBonus;
+            //return regularPay + overtimePay;
 
+        return getRegularPay() + getOvertimePay();
+    }
+
+    public double getRegularPay(){
+        return getRegularHours() * payRate;
+    }
+
+    public double getOvertimePay(){
+        return getOvertimeHours() * payRate * overtimeBonus;
 
     }
 
