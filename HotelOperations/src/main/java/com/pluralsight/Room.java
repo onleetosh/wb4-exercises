@@ -32,7 +32,44 @@ public class Room {
     public boolean isDirty(){
         return dirty;
     }
-    public boolean getAvailable(){
+    public boolean isAvailable(){
         return ( !this.isDirty() && !this.isOccupied());
+    }
+
+    //guest checks in . room is consider taken and dirty
+    public boolean checkIn() throws Exception {
+        if (isAvailable()) {
+            this.occupied = true;
+            this.dirty = true;
+            return true; // indicates checked in
+        }
+        else if (isDirty()){
+            System.out.println("Room is in no condition for check-in.");
+        }
+        else {
+            throw new Exception("Room is unavailable for check-in.");
+        }
+        return true;
+    }
+
+    //when guest check out, room is consider empty
+    public boolean checkOut() throws Exception {
+        if (isOccupied()) {
+            this.occupied = false;
+            return true; // indicates is  dirty
+        }
+        else {
+            throw new Exception("Room is already vacant.");
+        }
+    }
+
+    public boolean cleanRoom() throws Exception{
+        if (isDirty()) {
+            this.dirty = false; // Room is clean
+            return true; //indicate room is available
+        } else {
+            throw new Exception("Room is already clean.");
+        }
+
     }
 }

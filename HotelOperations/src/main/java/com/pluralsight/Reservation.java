@@ -46,7 +46,7 @@ public class Reservation {
         return roomType;
     }
     public int getNumberOfNights(){
-        return  numberOfNights;
+        return numberOfNights;
     }
     public boolean isWeekend(){
         return isWeekend;

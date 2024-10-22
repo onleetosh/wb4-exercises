@@ -42,7 +42,6 @@ public class Employee {
         else {
             return 0;
         }
-
         // return (hoursWorked > maxWorkHour) ? hoursWorked - maxWorkHour : 0 ;
     }
 
@@ -60,6 +59,14 @@ public class Employee {
 
     public double getOvertimePay(){
         return getOvertimeHours() * payRate * overtimeBonus;
+
+    }
+
+    public double punchIn(double time) {
+
+    }
+
+    public double punchOut(double time) {
 
     }
 
