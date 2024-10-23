@@ -14,16 +14,19 @@ public class Hotel {
 
     //declare variables to track data
     private String name; //king or double
-    private int numberOfSuites;
-    private int numberOfRooms;
-    private int bookedSuites = 0;
-    private int bookedRooms = 0;
+    private int numberOfSuites; //suites
+    private int numberOfRooms; //basic rooms
+    private int bookedSuites;
+    private int bookedRooms;
 
     // constructor 1 sets only number of suites and rooms
     public Hotel(String name, int numberOfSuites, int numberOfRooms){
         this.name = name;
         this.numberOfSuites = numberOfSuites;
         this.numberOfRooms = numberOfRooms;
+        this.bookedSuites = 0; //default to 0
+        this.bookedRooms = 0; //default to 0
+
     }
 
     //constructor 2 specify the number of booked suites and booked rooms.
@@ -51,43 +54,37 @@ public class Hotel {
         return bookedRooms;
     }
 
-    //determines if there are enough rooms available and update the book inventory
-    public boolean bookRoom(int numberOfRooms, boolean isSuite){
 
-        System.out.println("How many rooms are you booking");
-        int choice = input.nextInt();
-
-        //if booking more than 1 room
-        if(choice >= 2) {
-            do{
-                //enter booking details
-
+    public boolean bookRoom(int numberOfRooms, boolean isSuite) {
+        //book suite
+        if(isSuite){
+            if ( numberOfSuites > getAvailableSuites()){
+                return false; //unavailable
             }
-            while(PromptForMoreRooms("Continue new booking"));
-
-            //numberOfRooms ++;
-
-
-        }
         else {
-            //enter booking details
+            bookedSuites += numberOfRooms;
+            return true; //available
+            }
         }
-
-
+        //book double
+        else {
+            if(numberOfRooms > getAvailableRooms()) {
+                return false; //unavailable
+            }
+            else {
+                bookedRooms += numberOfRooms;
+                return true; //available
+            }
+        }
     }
 
+
+    public int getAvailableSuites(){
+        return numberOfSuites - bookedSuites;
+
+    }
     public int getAvailableRooms() {
-
-       //return Room.showAvailableSuites(Room.Suites).length;
+        return numberOfRooms - bookedRooms;
     }
-
-
-    public static boolean PromptForMoreRooms(String prompt){
-        System.out.print(prompt + " ( Y for Yes, N for No ) ?");
-        String userInput = input.nextLine();
-        return ( userInput.equalsIgnoreCase("Y") || userInput.equalsIgnoreCase("YES"));
-    }
-
-
 
 }

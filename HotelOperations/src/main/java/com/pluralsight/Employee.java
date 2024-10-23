@@ -1,11 +1,11 @@
 package com.pluralsight;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Employee {
+   static LocalDateTime now = LocalDateTime.now();
+   static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm");
 
     private int employeeId;
     private String name;
@@ -24,6 +24,7 @@ public class Employee {
 
     private final double overtimeBonus = 1.5;
     private final double maxWorkHour = 40;
+
 
     public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
         this.employeeId = employeeId;
@@ -83,6 +84,25 @@ public class Employee {
 
     }
 
+    public double punchIn(double time){
+        return this.hoursWorked -= time;
+    }
+
+    public void punchIn(){
+        punchInTime = now;
+        String time = punchInTime.format(fmt);
+
+    }
+
+    public double punchOut(double time){
+        return this.hoursWorked += time;
+    }
+
+    public void punchOut(){
+        punchOutTime = now;
+        String time = punchOutTime.format(fmt);
+
+    }
 
     public double punchTimeCard(double time){
         if (!isPunchIn) {
@@ -97,18 +117,17 @@ public class Employee {
 
     }
     public void punchTimeCard(boolean isWorking){
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm");
-            String format = now.format(fmt);
+
+            String time = now.format(fmt);
             if (isWorking) {
                 punchInTime = now;
-                System.out.println(name + " punched in at: " + format);
+                System.out.println(name + " punched in at: " + time);
             } else {
                 punchOutTime = now;
-                System.out.println(name + " punched out at: " + format);
+                System.out.println(name + " punched out at: " + time);
 
                 if (punchInTime != null) {
-                    getTotalPay();
+                    //getTotalPay();
                 } else {
                     System.out.println("Error: No punch-in time recorded for " + name);
                 }

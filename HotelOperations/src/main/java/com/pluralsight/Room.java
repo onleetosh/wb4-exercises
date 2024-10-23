@@ -11,6 +11,7 @@ public class Room {
     static Room[] Rooms = initializeRooms();
     static Room[] Suites = initializeSuites();
 
+    //declare variables
     private int beds; // track number of beds
     private double price;
     private boolean occupied; //taken or empty
