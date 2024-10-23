@@ -8,7 +8,7 @@ package com.pluralsight;
 
 public class Room {
 
-    static Room[] Standards = initializeStandards();
+    static Room[] Doubles = initializeDoubles();
     static Room[] Suites = initializeSuites();
 
     //declare variables
@@ -27,44 +27,50 @@ public class Room {
 
     public int getBeds(){ return  beds; }
     public double getPrice(){ return price; }
-    public boolean isOccupied(){ return occupied; }
-    public boolean isDirty(){ return dirty; }
+    public boolean isOccupied(){ return true; }
+    public boolean isDirty(){ return true; }
     public boolean isAvailable(){ return ( !this.isDirty() && !this.isOccupied()); }
 
-    //guest checks in . room is consider taken and dirty
-    public boolean checkIn() throws Exception {
-        if (isAvailable()) {
-            this.occupied = true;
-            this.dirty = true;
+    //guest checks in to hotel room.
+    public boolean checkIn()  {
+
+        if (!isAvailable()) {
+            System.out.println("Guest can check-in room");
+            this.occupied = false;
+            this.dirty = false;
             return true; // indicates checked in
         }
         else if (isDirty()){
             System.out.println("Room is in no condition for check-in.");
         }
         else {
-            throw new Exception("Room is unavailable for check-in.");
+            System.out.println("Room is occupied by guest. Cannot check-in.");
         }
         return true;
     }
 
-    //when guest check out, room is consider empty
-    public boolean checkOut() throws Exception {
+    //when guest check out of hotel room
+    public boolean checkOut() {
         if (isOccupied()) {
-            this.occupied = false;
+            System.out.println("Guest checked-out room.");
+           // this.occupied = false;
+            this.dirty = true;
             return true; // indicates is  dirty
         }
         else {
-            throw new Exception("Room is already vacant.");
+            System.out.println("Room is already vacant.");
         }
+        return true;
     }
 
-    public boolean cleanRoom() throws Exception{
-        if (isDirty()) {
-            this.dirty = false; // Room is clean
-            return true; //indicate room is available
+    public boolean cleanRoom() {
+        if (!isDirty()) {
+            System.out.println("Room is already clean.");
+            return true;
         } else {
-            throw new Exception("Room is already clean.");
+            System.out.println("Room needs to be clean");
         }
+        return true;
     }
 
     public static void DisplaySuites(Room[] suites){
@@ -75,7 +81,7 @@ public class Room {
         }
     }
     //method designed to display available rooms
-    public static void DisplayStandards(Room[] rooms){
+    public static void DisplayDoubles(Room[] rooms){
         System.out.printf("%5s %55s\n" , "Beds", "Price" );
         System.out.println("-----------------------------------------------------------------------------------------------------------");
         for(Room room : rooms) {
@@ -128,7 +134,7 @@ public class Room {
         suite[9] = new Room(3, 20, false, false); //available
         return suite;
     }
-    public static Room[] initializeStandards() {
+    public static Room[] initializeDoubles() {
         Room[] room = new Room[10];
         room[0] = new Room(1, 10, true, true);
         room[1] = new Room(2, 10, false, false);
