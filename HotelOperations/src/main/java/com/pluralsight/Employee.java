@@ -20,8 +20,6 @@ public class Employee {
     private double totalHours = 0;     // to accumulate hours worked
 
 
-
-
     private final double overtimeBonus = 1.5;
     private final double maxWorkHour = 40;
 

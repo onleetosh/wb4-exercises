@@ -8,7 +8,7 @@ package com.pluralsight;
 
 public class Room {
 
-    static Room[] Rooms = initializeRooms();
+    static Room[] Standards = initializeStandards();
     static Room[] Suites = initializeSuites();
 
     //declare variables
@@ -75,7 +75,7 @@ public class Room {
         }
     }
     //method designed to display available rooms
-    public static void DisplayRooms(Room[] rooms){
+    public static void DisplayStandards(Room[] rooms){
         System.out.printf("%5s %55s\n" , "Beds", "Price" );
         System.out.println("-----------------------------------------------------------------------------------------------------------");
         for(Room room : rooms) {
@@ -98,7 +98,7 @@ public class Room {
         return results;
     }
     //method designed to display available rooms
-    public static Room[] showAvailableRooms(Room[] rooms) {
+    public static Room[] showAvailableStandard(Room[] rooms) {
         Room[] available = new Room[rooms.length];
 
         int nextIndex = 0;
@@ -128,7 +128,7 @@ public class Room {
         suite[9] = new Room(3, 20, false, false); //available
         return suite;
     }
-    public static Room[] initializeRooms() {
+    public static Room[] initializeStandards() {
         Room[] room = new Room[10];
         room[0] = new Room(1, 10, true, true);
         room[1] = new Room(2, 10, false, false);
