@@ -2,7 +2,7 @@ package com.pluralsight;
 
 public class Reservation {
 
-    private String roomType; // king or double
+    private String roomType; // king (suite) or double
     private int numberOfNights;
     private boolean isWeekend; // weekday or weekend?
 
